@@ -1,4 +1,5 @@
 import models.Animal;
+import models.EndangeredAnimal;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -40,6 +41,16 @@ public class App {
         get("/animals/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+        //Endangered animals
+        get("/endangered", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<EndangeredAnimal> endangeredAnimals = (ArrayList<EndangeredAnimal>) EndangeredAnimal.all();
+            model.put("endangeredAnimals", endangeredAnimals);
+            return new ModelAndView(model, "endangeredAnimalList.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
