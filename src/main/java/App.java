@@ -1,5 +1,6 @@
 import models.Animal;
 import models.EndangeredAnimal;
+import models.Sighting;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -81,5 +82,40 @@ public class App {
             model.put("endangeredAnimals", endangeredAnimals);
             return new ModelAndView(model, "endangeredAnimalList.hbs");
         }, new HandlebarsTemplateEngine());
+
+
+        get("/endangered/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            EndangeredAnimal endangeredAnimal = EndangeredAnimal.find(Integer.parseInt(req.params("id")));
+            model.put("endangeredAnimal", endangeredAnimal);
+            return new ModelAndView(model, "endangeredAnimalDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/endangered/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            model.put("animal", animal);
+            return new ModelAndView(model, "animalDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/endangered/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            model.put("animal", animal);
+            return new ModelAndView(model, "animalDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+        //Sightings
+        get("/sightings", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Sighting> sightings = (ArrayList<Sighting>) Sighting.all();
+            model.put("sightings", sightings);
+            return new ModelAndView(model, "sightingsList.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
     }
 }
