@@ -3,6 +3,27 @@
     padding-top: 10%;
 }
 
+.animal{
+    margin-top: 4%;
+    background-image: url("/images/animal.jpg");
+    background-size: cover;
+    height: 400px;
+}
+
+.endangered{
+    margin-top: 4%;
+    background-image: url("/images/dang.jpg");
+    background-size: cover;
+    height: 400px;
+}
+
+.sight{
+    margin-top: 4%;
+    background-image: url("/images/sight.jpg");
+    background-size: cover;
+    height: 400px;
+}
+
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
     .down{
