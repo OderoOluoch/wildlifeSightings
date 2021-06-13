@@ -115,6 +115,16 @@ public class App {
             return new ModelAndView(model, "sightingsList.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/sightings/new_ends", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "endangeredSIghtingform.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/sightings/new_non_ends", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "NonengangeredSightingForm.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
         get("/sightings/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -136,10 +146,6 @@ public class App {
             model.put("animal", animal);
             return new ModelAndView(model, "animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
-
-
-
-
 
     }
 }
