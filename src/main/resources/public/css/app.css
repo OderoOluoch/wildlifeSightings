@@ -23,6 +23,10 @@
     background-size: cover;
     height: 400px;
 }
+.det{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {

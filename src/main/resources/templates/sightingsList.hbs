@@ -7,17 +7,18 @@
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">
-                        <h1>{{location}}</h1>
+                        <h3>{{location}}</h3>
                     </div>
                 </div>
-                <span class="badge bg-warning">
-                <a href="/sightings/{{id}}">View Details</a>
-            </span>
+
+                <span class="btn bg-warning">
+                      <a href="/sightings/{{id}}">View Details</a>
+                </span>
             </li>
         {{/each}}
     </ol>
     <div>
-        <a class="btn btn-outline-warning" href="/animals/new">Add an Animal to our Database</a>
+        <a class="btn btn-outline-warning det" href="/animals/new">Add an Animal to our Database</a>
     </div>
 
 
