@@ -1,0 +1,39 @@
+{{#partial "content"}}
+
+    <form action="/animals/new" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name of the animal</label>
+            <input type="name" name="name" class="form-control" id="name">
+        </div>
+        <div>
+            <input class="form-control" type="text" placeholder="More details if this is an endangered animal" readonly>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="endangered" class="form-check-input" id="endangered">
+            <label class="form-check-label" for="endangered">Click if this is an endangered animal</label>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label>Health</label>
+                <select class="form-control" name="health">
+                    <option>Ill</option>
+                    <option>Okay</option>
+                    <option>Healthy</option>
+                </select>
+            </div>
+            <div class="col">
+                <label>Age</label>
+                <select class="form-control" name="age">
+                    <option>Newborn</option>
+                    <option>Young</option>
+                    <option>Adult</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Submit Animal</button>
+    </form>
+
+{{/partial}}
+
+{{> layout.hbs}}
