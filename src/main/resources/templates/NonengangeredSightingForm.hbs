@@ -1,0 +1,16 @@
+<form action="/sighting" method="post">
+    #if($animals.size() >= 0)
+    <label>Select Animal</label>
+    <select name="animalSelected">
+        #foreach($animal in $animals)
+        <option value="$animal.getId()">$animal.getName()</option>
+        #end
+    </select>
+
+    <label>Location</label>
+    <input type="text" name="latLong">
+    <label>Your Name</label>
+    <input type="text" name="rangerName">
+    <button type="submit">Submit Report</button>
+    #end
+</form>
