@@ -116,6 +116,30 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
 
+        get("/sightings/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Sighting sighting = Sighting.find(Integer.parseInt(req.params("id")));
+            model.put("sighting", sighting);
+            return new ModelAndView(model, "sightingsDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/sightings/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            model.put("animal", animal);
+            return new ModelAndView(model, "animalDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/sightings/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            model.put("animal", animal);
+            return new ModelAndView(model, "animalDetail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+
 
     }
 }
