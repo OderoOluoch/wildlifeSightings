@@ -35,13 +35,28 @@ public class App {
 
         post("/animals/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "index.hbs");
+            boolean endangered = req.queryParamsValues("endangered")!=null;
+            String name = req.queryParams("name");
+            System.out.println("Name One" + name);
+            if (endangered) {
+                String health = req.queryParams("health");
+                String age = req.queryParams("age");
+                System.out.println("Name Two" + name);
+                EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, health, age);
+                endangeredAnimal.save();
+            } else {
+                Animal animal = new Animal(name);
+                animal.save();
+            }
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/animals/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
+
 
 
 
