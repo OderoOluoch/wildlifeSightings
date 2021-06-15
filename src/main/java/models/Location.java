@@ -57,13 +57,13 @@ public class Location {
         }
     }
 
-    public static Animal find(int id) {
+    public static Location find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM locations WHERE id=:id;";
-            Animal animal = con.createQuery(sql)
+            Location location = con.createQuery(sql)
                     .addParameter("id", id)
-                    .executeAndFetchFirst(Animal.class);
-            return animal;
+                    .executeAndFetchFirst(Location.class);
+            return location;
         }
     }
 

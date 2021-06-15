@@ -1,0 +1,17 @@
+{{#partial "content"}}
+
+    <div class="alert alert-warning" role="alert">
+        Fill this form to add a sighting location
+    </div>
+
+    <form action="/locations/new" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Location Name</label>
+            <input type="name" name="name" class="form-control" id="name">
+        </div>
+        <button type="submit" class="btn btn-warning det">Submit Location</button>
+    </form>
+
+{{/partial}}
+
+{{> layout.hbs}}

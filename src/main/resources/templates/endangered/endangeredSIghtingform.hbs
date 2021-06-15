@@ -1,5 +1,9 @@
 {{#partial "content"}}
 
+
+
+
+
     <form action="/sighting" method="post">
 
         <div class="alert alert-danger" role="alert">
@@ -9,19 +13,28 @@
         <label>Select Animal</label>
         <select class="form-control" name="animalSelected">
             {{#each animals }}
-                <option>{{name}}</option>
+                <option value="{{id}}"> {{name}} </option>
             {{/each}}
         </select>
 
         <div class="mb-3">
             <label for="name" class="form-label">Location</label>
-            <input type="text" name="latLong" class="form-control" id="name">
+            <select class="form-control" name="animalSelected">
+                {{#each locations }}
+                    <option value="{{id}}"> {{name}} </option>
+                {{/each}}
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="rangerName" class="form-label">Ranger Name</label>
-            <input type="text" name="rangerName" class="form-control" id="rangerName">
+            <select class="form-control" name="animalSelected">
+                {{#each rangers }}
+                    <option value="{{id}}"> {{name}} </option>
+                {{/each}}
+            </select>
         </div>
+
         <button type="submit" class="btn btn-warning det">Submit Sighting</button>
     </form>
 

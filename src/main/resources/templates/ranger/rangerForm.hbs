@@ -1,0 +1,27 @@
+{{#partial "content"}}
+
+    <div class="alert alert-warning" role="alert">
+        Register a new ranger.
+    </div>
+
+    <form action="/ranger/new" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Ranger Name</label>
+            <input type="name" name="name" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Ranger Email Address</label>
+            <input type="email" name="email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Ranger Badge Number</label>
+            <input type="badge" name="badge" class="form-control" id="badge">
+        </div>
+
+
+        <button type="submit" class="btn btn-warning det">Submit Animal</button>
+    </form>
+
+{{/partial}}
+
+{{> layout.hbs}}

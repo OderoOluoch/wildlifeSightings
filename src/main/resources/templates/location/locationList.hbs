@@ -1,0 +1,25 @@
+{{#partial "content"}}
+    <div class="jumbotron animal p-3 p-md-5 text-white rounded bg-dark">
+
+    </div>
+    <ol class="list-group list-group-numbered">
+        {{#each locations }}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <h3>{{name}}</h3>
+                    </div>
+                </div>
+                <span class="btn bg-warning">
+                <a href="/locations/{{id}}">View Details</a>
+            </span>
+            </li>
+        {{/each}}
+    </ol>
+    <div>
+        <a class="btn btn-outline-warning det" href="/locations/new">Create a sight Location</a>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}
