@@ -9,8 +9,8 @@ public class EndangeredAnimal {
     public String name;
     public int id;
     public boolean endangered;
-    private String health;
-    private String age;
+    private int health;
+    private int age;
 
 
     public static final int MAX_HEALTH_LEVEL = 9;
@@ -23,18 +23,18 @@ public class EndangeredAnimal {
     public static final int ADULT = 12;
 
 
-    public EndangeredAnimal(String name, String health, String age) {
+    public EndangeredAnimal(String name, int health, int age) {
         this.name = name;
         this.id = id;
         this.health = health;
         this.age = age;
     }
 
-    public String getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -52,7 +52,7 @@ public class EndangeredAnimal {
             return false;
         } else {
             EndangeredAnimal newEndangeredAnimal = (EndangeredAnimal) otherEndangeredAnimal;
-            return this.getName().equals(newEndangeredAnimal.getName()) && this.getHealth().equals(newEndangeredAnimal.getHealth()) && this.getAge().equals(newEndangeredAnimal.getAge());
+            return this.getName().equals(newEndangeredAnimal.getName());
         }
     }
 

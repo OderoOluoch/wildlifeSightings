@@ -39,8 +39,8 @@ public class App {
             boolean endangered = req.queryParamsValues("endangered")!=null;
             String name = req.queryParams("name");
             if (endangered) {
-                String health = req.queryParams("health");
-                String age = req.queryParams("age");
+                Integer health = Integer.parseInt(req.queryParams("health"));
+                Integer age = Integer.parseInt(req.queryParams("age"));
                 EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, health, age);
                 endangeredAnimal.save();
             } else {

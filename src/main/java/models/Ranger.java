@@ -7,11 +7,12 @@ public class Ranger {
     public String name;
     public String email;
     public int id;
-    public int badgeNumber;
+    public String  badge;
 
-    public Ranger(String name, String email) {
+    public Ranger(String name, String email, String badge) {
         this.name = name;
         this.email = email;
+        this.badge = badge;
         this.id = id;
     }
 
@@ -35,10 +36,14 @@ public class Ranger {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    public String getBadge() {
+        return badge;
     }
 
+    public void setBadge(String badge) {
+        this.badge = badge;
+    }
 
     @Override
     public boolean equals(Object otherRanger) {
@@ -52,9 +57,11 @@ public class Ranger {
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO rangers (name) VALUES (:name);";
+            String sql = "INSERT INTO rangers (name, email, badge) VALUES (:name, :email, :badge );";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
+                    .addParameter("email", this.email)
+                    .addParameter("badge", this.badge)
                     .executeUpdate()
                     .getKey();
         }
@@ -62,11 +69,13 @@ public class Ranger {
 
     public static List<Ranger> all() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals;";
+            String sql = "SELECT * FROM rangers;";
             return con.createQuery(sql)
                     .executeAndFetch(Ranger.class);
         }
     }
+
+
 
     public static Ranger find(int id) {
         try(Connection con = DB.sql2o.open()) {
@@ -99,7 +108,7 @@ public class Ranger {
 
     public List<Sighting> getSightings() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE animal_id=:id;";
+            String sql = "SELECT * FROM sightings WHERE ranger_id=:id;";
             List<Sighting> sightings = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetch(Sighting.class);
