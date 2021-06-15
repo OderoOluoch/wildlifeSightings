@@ -8,9 +8,9 @@
 
         <label>Select Animal</label>
         <select class="form-control" name="animalSelected">
-            <option>Test</option>
-            <option>Test</option>
-            <option>Test</option>
+            {{#each animals }}
+                <option>{{name}}</option>
+            {{/each}}
         </select>
 
         <div class="mb-3">

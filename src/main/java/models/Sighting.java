@@ -1,7 +1,7 @@
 package models;
-
 import org.sql2o.Connection;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Sighting {
@@ -9,6 +9,8 @@ public class Sighting {
     private String location;
     private String ranger_Name;
     private int id;
+
+    private Timestamp sighted_at;
 
     public Sighting(int animal_id,String location, String ranger_name){
         this.animal_id = animal_id;
@@ -41,6 +43,14 @@ public class Sighting {
         this.ranger_Name = ranger_Name;
     }
 
+    public Timestamp getSighted_at() {
+        return sighted_at;
+    }
+
+    public void setSighted_at(Timestamp sighted_at) {
+        this.sighted_at = sighted_at;
+    }
+
     public int getId() {
         return id;
     }
@@ -63,7 +73,7 @@ public class Sighting {
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (animal_id, location, ranger_name) VALUES (:animal_id, :location, :ranger_name);";
+            String sql = "INSERT INTO sightings (animal_id, location, ranger_name, sighted_at ) VALUES (:animal_id, :location, :ranger_name, now());";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("animal_id", this.animal_id)
                     .addParameter("location", this.location)

@@ -12,6 +12,17 @@ public class EndangeredAnimal {
     private String health;
     private String age;
 
+
+    public static final int MAX_HEALTH_LEVEL = 9;
+    public static final int HEALTHY = 8;
+    public static final int ILL = 12;
+    public static final int OKAY = 0;
+
+    public static final int NEW_BORN = 3;
+    public static final int YOUNG = 8;
+    public static final int ADULT = 12;
+
+
     public EndangeredAnimal(String name, String health, String age) {
         this.name = name;
         this.id = id;

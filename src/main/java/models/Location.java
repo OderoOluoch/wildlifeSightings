@@ -1,14 +1,15 @@
 package models;
 
-
 import org.sql2o.Connection;
+
 import java.util.List;
 
-public class Animal {
+public class Location {
+
     public String name;
     public int id;
 
-    public Animal(String name) {
+    public Location(String name) {
         this.name = name;
         this.id = id;
     }
@@ -17,9 +18,18 @@ public class Animal {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     @Override
     public boolean equals(Object otherAnimal) {
@@ -89,4 +99,3 @@ public class Animal {
     }
 
 }
-
