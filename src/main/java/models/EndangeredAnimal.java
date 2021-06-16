@@ -4,7 +4,7 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class EndangeredAnimal {
+public class EndangeredAnimal implements AnimalInterface {
 
     public String name;
     public int id;
@@ -44,6 +44,17 @@ public class EndangeredAnimal {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void updateName(String name) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE endangered_animals SET name=:name WHERE id=:id;";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .executeUpdate();
+        }
     }
 
     @Override
