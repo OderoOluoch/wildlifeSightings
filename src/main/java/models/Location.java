@@ -61,8 +61,10 @@ public class Location {
     public static List<Sighting> allLocationSighting(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE location_id=:id ;";
-            return con.createQuery(sql)
+            List<Sighting> sightings = con.createQuery(sql)
+                    .addParameter("id", id)
                     .executeAndFetch(Sighting.class);
+            return sightings;
         }
     }
 
@@ -74,6 +76,7 @@ public class Location {
                     .executeAndFetchFirst(Location.class);
             return location;
         }
+
     }
 
     public void updateName(String name) {

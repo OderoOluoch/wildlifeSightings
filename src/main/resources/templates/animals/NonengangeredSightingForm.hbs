@@ -1,5 +1,5 @@
 {{#partial "content"}}
-    <form action="/sighting" method="post">
+    <form action="/sightings/new_non_ends" method="post">
 
         <div class="alert alert-danger" role="alert">
             Fill this if the animal you have sighted is a non-endangered animal.
@@ -14,7 +14,7 @@
 
         <div class="mb-3">
             <label for="name" class="form-label">Location</label>
-            <select class="form-control" name="animalSelected">
+            <select class="form-control" name="locationSelected">
                 {{#each locations }}
                     <option value="{{id}}"> {{name}} </option>
                 {{/each}}
@@ -23,7 +23,7 @@
 
         <div class="mb-3">
             <label for="rangerName" class="form-label">Ranger Name</label>
-            <select class="form-control" name="animalSelected">
+            <select class="form-control" name="rangerSelected">
                 {{#each rangers }}
                     <option value="{{id}}"> {{name}} </option>
                 {{/each}}

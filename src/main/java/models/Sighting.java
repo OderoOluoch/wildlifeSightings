@@ -6,16 +6,16 @@ import java.util.List;
 
 public class Sighting {
     private int animal_id;
-    private String location;
-    private String ranger_Name;
+    private int location_id;
+    private int ranger_id;
     private int id;
 
     private Timestamp sighted_at;
 
-    public Sighting(int animal_id,String location, String ranger_name){
+    public Sighting(int animal_id,int location_id, int ranger_id){
         this.animal_id = animal_id;
-        this.location = location;
-        this.ranger_Name = ranger_name;
+        this.location_id = location_id;
+        this.ranger_id = ranger_id;
         this.id = id;
     }
 
@@ -27,20 +27,20 @@ public class Sighting {
         this.animal_id = animal_id;
     }
 
-    public String getLocation() {
-        return location;
+    public int getLocationID() {
+        return location_id;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationID(int location) {
+        this.location_id = location;
     }
 
-    public String getRanger_Name() {
-        return ranger_Name;
+    public int getRanger_ID() {
+        return ranger_id;
     }
 
-    public void setRanger_Name(String ranger_Name) {
-        this.ranger_Name = ranger_Name;
+    public void setRanger_NameID(int ranger_id) {
+        this.ranger_id = ranger_id;
     }
 
     public Timestamp getSighted_at() {
@@ -59,25 +59,13 @@ public class Sighting {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object sighting){
-        if(!(sighting instanceof Sighting)){
-            return false;
-        }else {
-            Sighting newSighting = (Sighting) sighting;
-            return  this.getAnimal_id() == (newSighting.getAnimal_id()) &&
-                    this.getLocation().equals(newSighting.getLocation()) &&
-                    this.getRanger_Name().equals(newSighting.getRanger_Name());
-        }
-    }
-
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (animal_id, location, ranger_name, sighted_at ) VALUES (:animal_id, :location, :ranger_name, now());";
+            String sql = "INSERT INTO sightings (animal_id, location_id, ranger_id, sighted_at ) VALUES (:animal_id, :location_id, :ranger_id, now());";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("animal_id", this.animal_id)
-                    .addParameter("location", this.location)
-                    .addParameter("ranger_name", this.ranger_Name)
+                    .addParameter("location_id", this.location_id)
+                    .addParameter("ranger_id", this.ranger_id)
                     .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
