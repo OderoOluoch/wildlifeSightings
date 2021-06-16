@@ -76,6 +76,14 @@ public class EndangeredAnimal {
         }
     }
 
+    public static List<Sighting> allEndangeredAnimalSighting(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM sightings WHERE animal_id=:id ;";
+            return con.createQuery(sql)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
     public static EndangeredAnimal find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM endangered_animals WHERE id=:id;";

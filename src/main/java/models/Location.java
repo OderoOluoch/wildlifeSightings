@@ -57,6 +57,15 @@ public class Location {
         }
     }
 
+
+    public static List<Sighting> allLocationSighting(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM sightings WHERE location_id=:id ;";
+            return con.createQuery(sql)
+                    .executeAndFetch(Sighting.class);
+        }
+    }
+
     public static Location find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM locations WHERE id=:id;";

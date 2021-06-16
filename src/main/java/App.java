@@ -50,7 +50,9 @@ public class App {
         get("/animals/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            Sighting animalSightings = (Sighting) Animal.allAnimalSighting(Integer.parseInt(req.params("id")));
             model.put("animal", animal);
+            model.put("animalSightings", animalSightings);
             return new ModelAndView(model, "animals/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -85,6 +87,8 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             EndangeredAnimal endangeredAnimal = EndangeredAnimal.find(Integer.parseInt(req.params("id")));
             model.put("endangeredAnimal", endangeredAnimal);
+            Sighting animalSightings = (Sighting) EndangeredAnimal.allEndangeredAnimalSighting(Integer.parseInt(req.params("id")));
+            model.put("animalSightings", animalSightings);
             return new ModelAndView(model, "endangered/endangeredAnimalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -119,7 +123,6 @@ public class App {
             model.put("animals", animals);
             model.put("locations", locations);
             model.put("rangers", rangers);
-
 
             return new ModelAndView(model, "endangered/endangeredSIghtingform.hbs");
         }, new HandlebarsTemplateEngine());
@@ -222,6 +225,9 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             Ranger ranger = Ranger.find(Integer.parseInt(req.params("id")));
             model.put("ranger", ranger);
+            Sighting rangerSightings = (Sighting) Ranger.allRangerSighting(Integer.parseInt(req.params("id")));
+            model.put("rangerSightings", rangerSightings);
+
             return new ModelAndView(model, "ranger/rangerDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -270,6 +276,8 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             Location location = Location.find((Integer.parseInt(req.params("id")))) ;
             model.put("location", location);
+            Sighting locationSightings = (Sighting) Location.allLocationSighting(Integer.parseInt(req.params("id")));
+            model.put("locationSightings", locationSightings);
             return new ModelAndView(model, "location/locationList.hbs");
         }, new HandlebarsTemplateEngine());
 
