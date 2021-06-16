@@ -4,10 +4,10 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class Ranger {
-    public String name;
-    public String email;
-    public int id;
-    public String  badge;
+    private String name;
+    private String email;
+    private int id;
+    private String  badge;
 
     public Ranger(String name, String email, String badge) {
         this.name = name;
@@ -66,7 +66,6 @@ public class Ranger {
                     .getKey();
         }
     }
-
     public static List<Ranger> all() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM rangers;";
@@ -74,8 +73,6 @@ public class Ranger {
                     .executeAndFetch(Ranger.class);
         }
     }
-
-
 
     public static Ranger find(int id) {
         try(Connection con = DB.sql2o.open()) {
