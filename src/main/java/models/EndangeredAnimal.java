@@ -30,6 +30,13 @@ public class EndangeredAnimal implements AnimalInterface {
         this.age = age;
     }
 
+    public void extinct(){
+        if (health <= MIN_HEALTH_LEVEL){
+            throw new UnsupportedOperationException("Your animal may go extinct! You need to feed it");
+        }
+        health++;
+    }
+
     //getter method for the health variable
     public int getHealth() {
         return health;
@@ -120,6 +127,7 @@ public class EndangeredAnimal implements AnimalInterface {
 
     ///Public method that utilizes the constant to check if instance is dead or alive.
     public void updateHealth(int health) {
+        extinct();
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE endangered_animals SET health=:health WHERE id=:id;";
             con.createQuery(sql)

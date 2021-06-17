@@ -1,11 +1,5 @@
 {{#partial "content"}}
-
-
-    {{#each animalSightings}}
-        {{ id }}
-        {{/each}}
     <div class="container">
-
         <div class="card det">
             <div class="card-header">
                Animal details
@@ -19,11 +13,6 @@
 
 
         <div class="row">
-            <div class="col order-last">
-                <div>
-                    <a class="btn btn-outline-warning" href="#">Update Animal Name</a>
-                </div>
-            </div>
             <div class="col">
                 <div>
                     <form method="post" action="/animals/{{animal.id}}/delete">
@@ -42,6 +31,30 @@
         </div>
 
 
+    </div>
+    <div class="container">
+        {{#each animalSightings}}
+
+        <div class="card det">
+            <div class="card-header">
+                Sights for this animal - {{id}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Animal ID : {{animal_id}}
+                </h5>
+                <h5 class="card-title">
+                    Location  ID : {{location_id}}
+                </h5>
+                <h5 class="card-title">
+                    Ranger ID : {{ranger_id}}
+                </h5>
+                <h5 class="card-title">
+                    Time Sighted : {{sighted_at}}
+                </h5>
+            </div>
+        </div>
+        {{/each}}
     </div>
 
 {{/partial}}

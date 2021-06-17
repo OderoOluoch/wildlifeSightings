@@ -13,7 +13,6 @@ public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
 
-
         //Animal End Points.
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -55,6 +54,9 @@ public class App {
 
             List<Sighting> animalSightings =  Animal.allAnimalSighting(Integer.parseInt(req.params("id")));
             model.put("animalSightings", animalSightings);
+
+
+
             return new ModelAndView(model, "animals/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -151,8 +153,8 @@ public class App {
 
         get("/sightings/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
-            model.put("animal", animal);
+            Sighting sighting = Sighting.find(Integer.parseInt(req.params("id")));
+            model.put("sighting", sighting);
             return new ModelAndView(model, "animals/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -275,7 +277,7 @@ public class App {
             model.put("location", location);
             List<Sighting> locationSightings = Location.allLocationSighting(Integer.parseInt(req.params("id")));
             model.put("locationSightings", locationSightings);
-            return new ModelAndView(model, "location/locationList.hbs");
+            return new ModelAndView(model, "location/locationDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/locations/:id/update", (req, res) -> {

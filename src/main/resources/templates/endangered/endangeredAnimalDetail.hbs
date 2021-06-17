@@ -15,11 +15,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col order-last">
-                <div>
-                    <a class="btn btn-outline-warning" href="#">Update Animal Name</a>
-                </div>
-            </div>
             <div>
                 <form method="post" action="/endangered/{{endangeredAnimal.id}}/delete">
                     <button class="btn btn-outline-warning">Delete Animal</button>
@@ -31,6 +26,31 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        {{#each animalSightings}}
+
+            <div class="card det">
+                <div class="card-header">
+                    Sights for this animal - {{id}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Animal ID : {{animal_id}}
+                    </h5>
+                    <h5 class="card-title">
+                        Location  ID : {{location_id}}
+                    </h5>
+                    <h5 class="card-title">
+                        Ranger ID : {{ranger_id}}
+                    </h5>
+                    <h5 class="card-title">
+                        Time Sighted : {{sighted_at}}
+                    </h5>
+                </div>
+            </div>
+        {{/each}}
     </div>
 
 

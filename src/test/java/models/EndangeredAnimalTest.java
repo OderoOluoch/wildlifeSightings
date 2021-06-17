@@ -51,10 +51,10 @@ public class EndangeredAnimalTest {
 
     @Test
     public void update_updatesHealthAttribute_true() {
-        EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 3);
+        EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 4, 3);
         testEndangeredAnimal.save();
-        testEndangeredAnimal.updateHealth(4);
-        assertEquals(4, EndangeredAnimal.find(testEndangeredAnimal.getId()).getHealth());
+        testEndangeredAnimal.updateHealth(5);
+        assertEquals(5, EndangeredAnimal.find(testEndangeredAnimal.getId()).getHealth());
     }
 
     @Test
