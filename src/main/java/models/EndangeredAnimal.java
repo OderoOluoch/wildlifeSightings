@@ -150,6 +150,13 @@ public class EndangeredAnimal implements AnimalInterface {
             return sightings;
         }
     }
-
+    public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM endangered_animals WHERE id=:id;";
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
 
 }

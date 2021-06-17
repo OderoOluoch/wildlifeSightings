@@ -65,11 +65,12 @@ public class App {
             return new ModelAndView(model, "animals/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/animals/:id/delete", (req, res) -> {
+        post("/animals/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Animal animal = Animal.find(Integer.parseInt(req.params("id")));
+            animal.delete();
             model.put("animal", animal);
-            return new ModelAndView(model, "animals/animalDetail.hbs");
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -101,11 +102,11 @@ public class App {
             return new ModelAndView(model, "endangered/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/endangered/:id/delete", (req, res) -> {
+        post("/endangered/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
-            model.put("animal", animal);
-            return new ModelAndView(model, "endangered/animalDetail.hbs");
+            EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(req.params("id")));
+            animal.delete();
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -157,9 +158,9 @@ public class App {
 
         get("/sightings/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            Animal animal = Animal.find(Integer.parseInt(req.params("id")));
-            model.put("animal", animal);
-            return new ModelAndView(model, "animals/animalDetail.hbs");
+            Sighting sighting = Sighting.find(Integer.parseInt(req.params("id")));
+            sighting.delete();
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/sightings/new_ends", (request, response) -> {
@@ -230,14 +231,14 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             Ranger ranger = Ranger.find(Integer.parseInt(req.params("id")));
             model.put("ranger", ranger);
-            return new ModelAndView(model, "ranger/rangerDetail.hbs");
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/ranger/:id/delete", (req, res) -> {
+        post("/ranger/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Ranger ranger = Ranger.find(Integer.parseInt(req.params("id")));
-            model.put("ranger", ranger);
-            return new ModelAndView(model, "ranger/rangerDetail.hbs");
+            ranger.delete();
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
 
@@ -277,18 +278,18 @@ public class App {
             return new ModelAndView(model, "location/locationList.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/sightings/:id/update", (req, res) -> {
+        get("/locations/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Location location = Location.find((Integer.parseInt(req.params("id")))) ;
             model.put("location", location);
             return new ModelAndView(model, "location/locationDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/sightings/:id/delete", (req, res) -> {
+        post("/locations/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             Location location = Location.find((Integer.parseInt(req.params("id")))) ;
-            model.put("location", location);
-            return new ModelAndView(model, "location/locationDetail.hbs");
+            location.delete();
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
     }
