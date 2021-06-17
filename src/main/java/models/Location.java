@@ -2,33 +2,40 @@ package models;
 import org.sql2o.Connection;
 import java.util.List;
 
+
 public class Location {
 
+    //Instantiating variables.
     public String name;
     public int id;
 
+    //location constructor class.
     public Location(String name) {
         this.name = name;
         this.id = id;
     }
 
+    //Getter method to get location name
     public String getName() {
         return name;
     }
 
+    //Setter method to set location name
     public void setName(String name) {
         this.name = name;
     }
 
+    //Getter method to get location id
     public int getId() {
         return id;
     }
 
+    //Getter method to set location id
     public void setId(int id) {
         this.id = id;
     }
 
-
+    //overridden method to compare location objects
     @Override
     public boolean equals(Object otherAnimal) {
         if(!(otherAnimal instanceof Animal)) {

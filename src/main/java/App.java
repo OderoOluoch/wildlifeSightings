@@ -4,6 +4,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -52,8 +53,8 @@ public class App {
             Animal animal = Animal.find(Integer.parseInt(req.params("id")));
             model.put("animal", animal);
 
-//            Sighting animalSightings = (Sighting) Animal.allAnimalSighting(Integer.parseInt(req.params("id")));
-//            model.put("animalSightings", animalSightings);
+            List<Sighting> animalSightings =  Animal.allAnimalSighting(Integer.parseInt(req.params("id")));
+            model.put("animalSightings", animalSightings);
             return new ModelAndView(model, "animals/animalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -88,8 +89,8 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             EndangeredAnimal endangeredAnimal = EndangeredAnimal.find(Integer.parseInt(req.params("id")));
             model.put("endangeredAnimal", endangeredAnimal);
-//            Sighting animalSightings = (Sighting) EndangeredAnimal.allEndangeredAnimalSighting(Integer.parseInt(req.params("id")));
-//            model.put("animalSightings", animalSightings);
+            List<Sighting> animalSightings =  EndangeredAnimal.allEndangeredAnimalSighting(Integer.parseInt(req.params("id")));
+            model.put("animalSightings", animalSightings);
             return new ModelAndView(model, "endangered/endangeredAnimalDetail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -219,8 +220,8 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             Ranger ranger = Ranger.find(Integer.parseInt(req.params("id")));
             model.put("ranger", ranger);
-//            Sighting rangerSightings = (Sighting) Ranger.allRangerSighting(Integer.parseInt(req.params("id")));
-//            model.put("rangerSightings", rangerSightings);
+            List<Sighting> rangerSightings = Ranger.allRangerSighting(Integer.parseInt(req.params("id")));
+            model.put("rangerSightings", rangerSightings);
 
             return new ModelAndView(model, "ranger/rangerDetail.hbs");
         }, new HandlebarsTemplateEngine());
@@ -238,6 +239,7 @@ public class App {
             model.put("ranger", ranger);
             return new ModelAndView(model, "ranger/rangerDetail.hbs");
         }, new HandlebarsTemplateEngine());
+
 
 
 
@@ -270,8 +272,8 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             Location location = Location.find((Integer.parseInt(req.params("id")))) ;
             model.put("location", location);
-//            Sighting locationSightings = (Sighting) Location.allLocationSighting(Integer.parseInt(req.params("id")));
-//            model.put("locationSightings", locationSightings);
+            List<Sighting> locationSightings = Location.allLocationSighting(Integer.parseInt(req.params("id")));
+            model.put("locationSightings", locationSightings);
             return new ModelAndView(model, "location/locationList.hbs");
         }, new HandlebarsTemplateEngine());
 

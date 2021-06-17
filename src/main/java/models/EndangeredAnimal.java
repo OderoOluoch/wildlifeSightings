@@ -1,19 +1,19 @@
 package models;
 
 import org.sql2o.Connection;
-
 import java.util.List;
 
 public class EndangeredAnimal implements AnimalInterface {
 
+    //Declaring our variables
     public String name;
     public int id;
     public boolean endangered;
     private int health;
     private int age;
 
-
-    public static final int MAX_HEALTH_LEVEL = 9;
+    //Declaring our constants.
+    public static final int MIN_HEALTH_LEVEL = 1;
     public static final int HEALTHY = 8;
     public static final int ILL = 12;
     public static final int OKAY = 0;
@@ -22,7 +22,7 @@ public class EndangeredAnimal implements AnimalInterface {
     public static final int YOUNG = 8;
     public static final int ADULT = 12;
 
-
+    //Constructor class.
     public EndangeredAnimal(String name, int health, int age) {
         this.name = name;
         this.id = id;
@@ -30,22 +30,27 @@ public class EndangeredAnimal implements AnimalInterface {
         this.age = age;
     }
 
+    //getter method for the health variable
     public int getHealth() {
         return health;
     }
 
+    //getter method for the age variable.
     public int getAge() {
         return age;
     }
 
+    //getter method fo the name variable
     public String getName() {
         return name;
     }
 
+    //getter method for the ID variable.
     public int getId() {
         return id;
     }
 
+    //overridden update name method.
     @Override
     public void updateName(String name) {
         try(Connection con = DB.sql2o.open()) {
@@ -57,6 +62,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //overridden written equal method that compares the instances of this class objects.
     @Override
     public boolean equals(Object otherEndangeredAnimal) {
         if(!(otherEndangeredAnimal instanceof EndangeredAnimal)) {
@@ -67,6 +73,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //Save method that inputs the data into the database.
     public void save() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO endangered_animals (name, health, age) VALUES (:name, :health, :age);";
@@ -79,6 +86,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //static method that lists all instances of this class.
     public static List<EndangeredAnimal> all() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM endangered_animals;";
@@ -87,6 +95,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //Static method that gets all database entries with this class instance ID.
     public static List<Sighting> allEndangeredAnimalSighting(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE animal_id=:id ;";
@@ -97,6 +106,8 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+
+    //static methods that finds a database entry based on a specific ID
     public static EndangeredAnimal find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM endangered_animals WHERE id=:id;";
@@ -107,6 +118,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    ///Public method that utilizes the constant to check if instance is dead or alive.
     public void updateHealth(String health) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE endangered_animals SET health=:health WHERE id=:id;";
@@ -117,6 +129,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //Method that updates the age of the animal instance
     public void updateAge(String age) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE endangered_animals SET age=:age WHERE id=:id;";
@@ -127,6 +140,7 @@ public class EndangeredAnimal implements AnimalInterface {
         }
     }
 
+    //Method that gets all instances of the database entries where the animal ID exists.
     public List<Sighting> getSightings() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE animal_id=:id;";
