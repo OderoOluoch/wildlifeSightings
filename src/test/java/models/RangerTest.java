@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class RangerTest {
+    //BD rule connects to the test database, and is run before and after each test
     @Rule
     public DatabaseRule database = new DatabaseRule();
 
@@ -17,7 +18,7 @@ public class RangerTest {
     }
 
     @Test
-    public void getName_eangerInstantiatesWithName_Odero() {
+    public void getName_rangerInstantiatesWithName_Odero() {
         Ranger testRanger = new Ranger("Odero","odero@me.com","A322A");
         assertEquals("Odero", testRanger.getName());
     }
@@ -29,13 +30,6 @@ public class RangerTest {
         assertEquals(false, testRanger.equals(testRangerTwo));
     }
 
-    @Test
-    public void save_assignsIdToObjectAndSavesObjectToDatabase() {
-        Ranger testRanger = new Ranger("Odero","odero@me.com","A322A");
-        testRanger.save();
-        Ranger testRangerTwo = Ranger.all().get(0);
-        assertEquals(testRanger.getId(), testRangerTwo.getId());
-    }
 
     @Test
     public void all_returnsAllInstancesOfRanger_false() {
@@ -53,7 +47,7 @@ public class RangerTest {
         firstRanger.save();
         Ranger secondRanger = new Ranger("Oluoch","oluoch@me.com","A422A");
         secondRanger.save();
-        assertEquals(Animal.find(secondRanger.getId()), secondRanger);
+        assertEquals(Ranger.find(secondRanger.getId()), secondRanger);
     }
 
     @Test
@@ -64,13 +58,7 @@ public class RangerTest {
         assertEquals(0, Animal.all().size());
     }
 
-//    @Test
-//    public void updateName_updatesAnimalNameInDatabase_String() {
-//        Animal testAnimal = new Animal("Tiger");
-//        testAnimal.save();
-//        testAnimal.updateName("Lion");
-//        assertEquals("Lion", testAnimal.getName());
-//    }
+
 
     @Test
     public void find_returnsNullWhenNoRangerFound_null() {

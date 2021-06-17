@@ -119,7 +119,7 @@ public class EndangeredAnimal implements AnimalInterface {
     }
 
     ///Public method that utilizes the constant to check if instance is dead or alive.
-    public void updateHealth(String health) {
+    public void updateHealth(int health) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE endangered_animals SET health=:health WHERE id=:id;";
             con.createQuery(sql)
@@ -130,7 +130,7 @@ public class EndangeredAnimal implements AnimalInterface {
     }
 
     //Method that updates the age of the animal instance
-    public void updateAge(String age) {
+    public void updateAge(int age) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE endangered_animals SET age=:age WHERE id=:id;";
             con.createQuery(sql)

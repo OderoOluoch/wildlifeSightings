@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AnimalTest {
 
+    //BD rule connects to the test database, and is run before and after each test
     @Rule
     public DatabaseRule database = new DatabaseRule();
 
@@ -65,13 +66,7 @@ public class AnimalTest {
         assertEquals(0, Animal.all().size());
     }
 
-//    @Test
-//    public void updateName_updatesAnimalNameInDatabase_String() {
-//        Animal testAnimal = new Animal("Tiger");
-//        testAnimal.save();
-//        testAnimal.updateName("Lion");
-//        assertEquals("Lion", testAnimal.getName());
-//    }
+
 
     @Test
     public void find_returnsNullWhenNoAnimalFound_null() {

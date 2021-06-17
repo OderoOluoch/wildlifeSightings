@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class EndangeredAnimalTest {
-
+    //BD rule connects to the test database, and is run before and after each test
     @Rule
     public DatabaseRule database = new DatabaseRule();
 
@@ -19,7 +19,7 @@ public class EndangeredAnimalTest {
     @Test
     public void getHealth_returnsHealthAttribute_true() {
         EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 3);
-        assertEquals("Healthy", testEndangeredAnimal.getHealth());
+        assertEquals(1, testEndangeredAnimal.getHealth());
     }
 
     @Test
@@ -53,16 +53,16 @@ public class EndangeredAnimalTest {
     public void update_updatesHealthAttribute_true() {
         EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 3);
         testEndangeredAnimal.save();
-        testEndangeredAnimal.updateHealth("ill");
-        assertEquals("ill", EndangeredAnimal.find(testEndangeredAnimal.getId()).getHealth());
+        testEndangeredAnimal.updateHealth(4);
+        assertEquals(4, EndangeredAnimal.find(testEndangeredAnimal.getId()).getHealth());
     }
 
     @Test
     public void update_updatesAgeAttribute_true() {
         EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1,2);
         testEndangeredAnimal.save();
-        testEndangeredAnimal.updateAge("Adult");
-        assertEquals("Adult", EndangeredAnimal.find(testEndangeredAnimal.getId()).getAge());
+        testEndangeredAnimal.updateAge(4);
+        assertEquals(4, EndangeredAnimal.find(testEndangeredAnimal.getId()).getAge());
     }
 
 

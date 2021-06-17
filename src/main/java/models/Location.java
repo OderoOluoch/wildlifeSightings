@@ -46,6 +46,8 @@ public class Location {
         }
     }
 
+
+    //save method to get insert data into the database.
     public void save() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO locations (name) VALUES (:name);";
@@ -56,6 +58,7 @@ public class Location {
         }
     }
 
+    //static list method to get all instances of the location class.
     public static List<Location> all() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM locations;";
@@ -65,6 +68,7 @@ public class Location {
     }
 
 
+    //static method to get all sightings with this specific location
     public static List<Sighting> allLocationSighting(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE location_id=:id ;";
@@ -75,6 +79,7 @@ public class Location {
         }
     }
 
+    //Static method to get a specific location based on an ID
     public static Location find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM locations WHERE id=:id;";
@@ -86,6 +91,7 @@ public class Location {
 
     }
 
+    //void method to update location name
     public void updateName(String name) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE locations SET name=:name WHERE id=:id;";
@@ -96,22 +102,13 @@ public class Location {
         }
     }
 
+    //void method to delete location instance
     public void delete() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "DELETE FROM locations WHERE id=:id;";
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
-        }
-    }
-
-    public List<Sighting> getSightings() {
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE location_id=:id;";
-            List<Sighting> sightings = con.createQuery(sql)
-                    .addParameter("id", id)
-                    .executeAndFetch(Sighting.class);
-            return sightings;
         }
     }
 
